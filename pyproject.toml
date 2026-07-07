@@ -1,0 +1,67 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "repolens"
+version = "0.3.0"
+description = "A health check for your repository — audit it against open-source best practices."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "NobleSoul" }]
+keywords = [
+    "cli",
+    "linter",
+    "repository",
+    "code-quality",
+    "open-source",
+    "ci",
+    "best-practices",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Utilities",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/NobleSoul/repolens"
+Repository = "https://github.com/NobleSoul/repolens"
+Issues = "https://github.com/NobleSoul/repolens/issues"
+Changelog = "https://github.com/NobleSoul/repolens/blob/main/CHANGELOG.md"
+
+[project.scripts]
+repolens = "repolens.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["repolens"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "C4"]
+
+[tool.repolens]
+min_score = 90
+
+[tool.repolens.secrets]
+# Our test-suite intentionally contains an example AWS key as a fixture.
+ignore = ["tests/**"]
