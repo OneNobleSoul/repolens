@@ -1,0 +1,18 @@
+name: Feature request
+description: Suggest a new check or improvement
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: What are you trying to catch or improve in a repository?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Proposed check or change
+      description: If it's a new check, what should pass and what should fail?
+    validations:
+      required: true
