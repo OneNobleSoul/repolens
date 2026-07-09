@@ -34,10 +34,10 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/NobleSoul/repolens"
-Repository = "https://github.com/NobleSoul/repolens"
-Issues = "https://github.com/NobleSoul/repolens/issues"
-Changelog = "https://github.com/NobleSoul/repolens/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/UnterwegsDev/repolens"
+Repository = "https://github.com/UnterwegsDev/repolens"
+Issues = "https://github.com/UnterwegsDev/repolens/issues"
+Changelog = "https://github.com/UnterwegsDev/repolens/blob/main/CHANGELOG.md"
 
 [project.scripts]
 repolens = "repolens.cli:main"
