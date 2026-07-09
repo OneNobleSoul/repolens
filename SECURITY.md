@@ -10,7 +10,7 @@ version on PyPI and the `main` branch.
 Please **do not** open a public issue for security problems.
 
 Instead, use GitHub's [private vulnerability
-reporting](https://github.com/NobleSoul/repolens/security/advisories/new)
+reporting](https://github.com/UnterwegsDev/repolens/security/advisories/new)
 (Security → Report a vulnerability). If that is unavailable to you, open a
 minimal issue asking for a private contact channel without disclosing details.
 
