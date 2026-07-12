@@ -32,7 +32,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   with a weighted 0–100 score and a coloured terminal report.
 - `--min-score` gate for use in CI.
 
-[Unreleased]: https://github.com/UnterwegsDev/repolens/compare/v0.3.0...HEAD
-[0.3.0]: https://github.com/UnterwegsDev/repolens/compare/v0.2.0...v0.3.0
-[0.2.0]: https://github.com/UnterwegsDev/repolens/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/UnterwegsDev/repolens/releases/tag/v0.1.0
+[Unreleased]: https://github.com/OneNobleSoul/repolens/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/OneNobleSoul/repolens/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/OneNobleSoul/repolens/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/OneNobleSoul/repolens/releases/tag/v0.1.0

@@ -6,7 +6,7 @@ contributing is meant to be low-ceremony.
 ## Getting set up
 
 ```bash
-git clone https://github.com/UnterwegsDev/repolens
+git clone https://github.com/OneNobleSoul/repolens
 cd repolens
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
