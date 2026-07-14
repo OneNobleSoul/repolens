@@ -6,6 +6,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+- The committed-secret scanner now also detects GitHub fine-grained personal
+  access tokens (`github_pat_...`), not just the classic `ghp_...` format.
+
 ## [0.3.0] - 2026-07-09
 
 ### Added
