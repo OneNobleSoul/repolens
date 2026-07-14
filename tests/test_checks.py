@@ -54,6 +54,17 @@ def test_secret_scanner_flags_aws_key(make_repo):
     assert "AWS" in finding.message
 
 
+def test_secret_scanner_flags_github_fine_grained_token(make_repo):
+    token = (
+        "github_pat_HBRPOIG8F1CBFNO6B9M80O_"
+        "2RAK1VRJNVGFYGWWQC38HYF9SXMECOSFOGYR3XKXWNREK8PK3YR9OUDOCUZ"
+    )
+    repo = make_repo({"deploy.sh": f'export GH_TOKEN="{token}"'})
+    finding = security.committed_secrets(repo)
+    assert finding.status is Status.FAIL
+    assert "GitHub fine-grained token" in finding.message
+
+
 def test_secret_scanner_flags_committed_env(make_repo):
     repo = make_repo({".env": "TOKEN=abc"})
     assert security.committed_secrets(repo).status is Status.FAIL
