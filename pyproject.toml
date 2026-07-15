@@ -9,7 +9,7 @@ description = "A health check for your repository — audit it against open-sour
 readme = "README.md"
 requires-python = ">=3.11"
 license = { file = "LICENSE" }
-authors = [{ name = "NobleSoul" }]
+authors = [{ name = "OneNobleSoul" }]
 keywords = [
     "cli",
     "linter",

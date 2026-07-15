@@ -10,6 +10,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - The committed-secret scanner now also detects GitHub fine-grained personal
   access tokens (`github_pat_...`), not just the classic `ghp_...` format.
 
+### Fixed
+- LICENSE and pyproject.toml still had the old author name "NobleSoul" from
+  before the account rename to OneNobleSoul.
+
 ## [0.3.0] - 2026-07-09
 
 ### Added
