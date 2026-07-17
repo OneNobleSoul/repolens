@@ -65,6 +65,29 @@ def test_secret_scanner_flags_github_fine_grained_token(make_repo):
     assert "GitHub fine-grained token" in finding.message
 
 
+def test_secret_scanner_flags_anthropic_key(make_repo):
+    token = "sk-ant-api03-" + "aB3-cD4_eF5" * 8 + "qz"
+    repo = make_repo({"config.py": f'ANTHROPIC_API_KEY = "{token}"'})
+    finding = security.committed_secrets(repo)
+    assert finding.status is Status.FAIL
+    assert "Anthropic API key" in finding.message
+
+
+def test_secret_scanner_flags_openai_key(make_repo):
+    token = "sk-proj-" + "aB3cD4eF5" * 3 + "T3BlbkFJ" + "gH6iJ7kL8" * 3
+    repo = make_repo({"config.py": f'OPENAI_API_KEY = "{token}"'})
+    finding = security.committed_secrets(repo)
+    assert finding.status is Status.FAIL
+    assert "OpenAI API key" in finding.message
+
+
+def test_secret_scanner_ignores_short_sk_prefix(make_repo):
+    # A short "sk-" prefixed value (e.g. a Stripe-style test placeholder)
+    # should not trip the high-precision Anthropic/OpenAI patterns.
+    repo = make_repo({"config.py": 'PLACEHOLDER = "sk-test-not-a-real-key"'})
+    assert security.committed_secrets(repo).status is Status.PASS
+
+
 def test_secret_scanner_flags_committed_env(make_repo):
     repo = make_repo({".env": "TOKEN=abc"})
     assert security.committed_secrets(repo).status is Status.FAIL

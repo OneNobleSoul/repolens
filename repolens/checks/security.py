@@ -21,6 +21,13 @@ _SECRET_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("Slack token", re.compile(r"\bxox[baprs]-[0-9A-Za-z-]{10,}\b")),
     ("GitHub token", re.compile(r"\bgh[pousr]_[0-9A-Za-z]{36}\b")),
     ("GitHub fine-grained token", re.compile(r"\bgithub_pat_[0-9A-Za-z]{22}_[0-9A-Za-z]{59}\b")),
+    ("Anthropic API key", re.compile(r"\bsk-ant-(?:api03|oat01)-[0-9A-Za-z_-]{90,}\b")),
+    # Modern OpenAI keys embed the base64 literal "OpenAI" (T3BlbkFJ) mid-token,
+    # which makes them just as identifiable as the AWS/Google prefixes above.
+    (
+        "OpenAI API key",
+        re.compile(r"\bsk-(?:proj|svcacct|admin)-[0-9A-Za-z_-]{20,}T3BlbkFJ[0-9A-Za-z_-]{20,}\b"),
+    ),
     ("generic private key file", re.compile(r"PRIVATE KEY-----")),
 )
 
