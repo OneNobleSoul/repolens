@@ -9,6 +9,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 - The committed-secret scanner now also detects GitHub fine-grained personal
   access tokens (`github_pat_...`), not just the classic `ghp_...` format.
+- The committed-secret scanner now detects leaked Anthropic (`sk-ant-api03-...`,
+  `sk-ant-oat01-...`) and OpenAI (`sk-proj-...`, `sk-svcacct-...`,
+  `sk-admin-...`) API keys.
 
 ### Fixed
 - LICENSE and pyproject.toml still had the old author name "NobleSoul" from
