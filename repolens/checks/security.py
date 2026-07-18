@@ -28,6 +28,9 @@ _SECRET_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
         "OpenAI API key",
         re.compile(r"\bsk-(?:proj|svcacct|admin)-[0-9A-Za-z_-]{20,}T3BlbkFJ[0-9A-Za-z_-]{20,}\b"),
     ),
+    # Only the "live" prefix is flagged — Stripe's "test" keys only work
+    # against the sandbox, so they turn up harmlessly in fixtures and docs.
+    ("Stripe live API key", re.compile(r"\b(?:sk|rk)_live_[0-9A-Za-z]{24,247}\b")),
     ("generic private key file", re.compile(r"PRIVATE KEY-----")),
 )
 
