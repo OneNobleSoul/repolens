@@ -81,6 +81,21 @@ def test_secret_scanner_flags_openai_key(make_repo):
     assert "OpenAI API key" in finding.message
 
 
+def test_secret_scanner_flags_stripe_live_key(make_repo):
+    token = "sk" + "_live_" + "aB3cD4eF5" * 2 + "gH6iJ7kL8"
+    repo = make_repo({"config.py": f'STRIPE_SECRET_KEY = "{token}"'})
+    finding = security.committed_secrets(repo)
+    assert finding.status is Status.FAIL
+    assert "Stripe live API key" in finding.message
+
+
+def test_secret_scanner_ignores_stripe_test_key(make_repo):
+    # Stripe test keys only work against the sandbox, so they aren't a leak.
+    token = "sk" + "_test_" + "aB3cD4eF5" * 2 + "gH6iJ7kL8"
+    repo = make_repo({"config.py": f'STRIPE_SECRET_KEY = "{token}"'})
+    assert security.committed_secrets(repo).status is Status.PASS
+
+
 def test_secret_scanner_ignores_short_sk_prefix(make_repo):
     # A short "sk-" prefixed value (e.g. a Stripe-style test placeholder)
     # should not trip the high-precision Anthropic/OpenAI patterns.
