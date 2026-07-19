@@ -15,6 +15,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - The committed-secret scanner now detects leaked Stripe live API keys
   (`sk_live_...`, `rk_live_...`). Test-mode keys (`sk_test_...`) are left
   alone since they only work against Stripe's sandbox.
+- The committed-secret scanner now detects leaked npm access tokens
+  (`npm_...`), the fixed-width format npm has issued since 2023.
 
 ### Fixed
 - LICENSE and pyproject.toml still had the old author name "NobleSoul" from

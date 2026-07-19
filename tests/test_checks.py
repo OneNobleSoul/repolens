@@ -96,6 +96,21 @@ def test_secret_scanner_ignores_stripe_test_key(make_repo):
     assert security.committed_secrets(repo).status is Status.PASS
 
 
+def test_secret_scanner_flags_npm_token(make_repo):
+    token = "npm_" + "aB3cD4eF5gH6iJ7kL8mN9oP0qR1sT2uV3wX4y"[:36]
+    repo = make_repo({".npmrc": f"//registry.npmjs.org/:_authToken={token}"})
+    finding = security.committed_secrets(repo)
+    assert finding.status is Status.FAIL
+    assert "npm access token" in finding.message
+
+
+def test_secret_scanner_ignores_short_npm_prefix(make_repo):
+    # Legacy npm tokens are plain UUIDs and too generic to flag reliably;
+    # a short "npm_" placeholder shouldn't trip the fixed-width pattern either.
+    repo = make_repo({".npmrc": "//registry.npmjs.org/:_authToken=npm_placeholder"})
+    assert security.committed_secrets(repo).status is Status.PASS
+
+
 def test_secret_scanner_ignores_short_sk_prefix(make_repo):
     # A short "sk-" prefixed value (e.g. a Stripe-style test placeholder)
     # should not trip the high-precision Anthropic/OpenAI patterns.
