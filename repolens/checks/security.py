@@ -31,6 +31,10 @@ _SECRET_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     # Only the "live" prefix is flagged — Stripe's "test" keys only work
     # against the sandbox, so they turn up harmlessly in fixtures and docs.
     ("Stripe live API key", re.compile(r"\b(?:sk|rk)_live_[0-9A-Za-z]{24,247}\b")),
+    # Fine-grained npm access tokens (introduced 2023) use this fixed-width
+    # prefixed format, unlike the legacy plain-UUID tokens, which are too
+    # generic to flag without false positives.
+    ("npm access token", re.compile(r"\bnpm_[0-9A-Za-z]{36}\b")),
     ("generic private key file", re.compile(r"PRIVATE KEY-----")),
 )
 
